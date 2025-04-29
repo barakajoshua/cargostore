@@ -51,7 +51,7 @@ include "./config/connect.php";
                     <h1>Log In👋</h1>
                     <p>Get started with your free account</p>
                 </div>
-                <form>
+                <form method="POST" action="./controller/controller.php">
                     <div class="input-group">
                         <input type="text" name="username" placeholder="Enter your username"  required>
                     </div>
