@@ -20,31 +20,46 @@ function singin($username , $password){
          $checking = mysqli_num_rows($gettingUser);
          if($checking){
          $_SESSION['username'] = $checking.$username;
-         header('location: /.././view/index.php');
+        header('location:/cargo/viewing/dash.php');
          }else{
-            echo"User not found" . mysqli_connect_error();
+            header('location:/cargo/');
+            echo"<script>alert('user not found') </script>";
          }
 }
 
-function logOut(){
+function UserLogOut(){
     session_destroy();
     session_unset();
     header('location:../');
 }
 
-
-
-function  getAlldata(){
-
+function addNewProduct($furniture , $owner){
+    $sql = "insert into furniture(furnitureName,furnitureOwnerName) values('$furniture','$owner')";
+    $registerProdut = mysqli_query($GLOBALS['connection'],$sql);
+    if($registerProdut){
+        echo'product registered successfully';
+            // header('location:/cargo/viewing/dash');
+    }else{
+        echo'Erro while inserting ' . mysqli_connect_error();
+    }
 }
 
-function stockOut(){
 
-}
 
-function stockIn(){
+// function  getAlldata(){
+//     $getUser = "SELECT * FROM manager";
+//     $result = mysqli_query($GLOBALS['connection'],$getUser);
+//     return $result;
+// }
+
+
+// function stockOut(){
+
+// }
+
+// function stockIn(){
     
-}
+// }
 
 
 

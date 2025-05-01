@@ -16,6 +16,12 @@ if(isset($_POST['login'])){
     singin($username , $password);
 }
 
+if(isset($_POST['register'])){
+    $furniture = $_POST['product'];
+    $owner = $_POST['owner'];
+    addNewProduct($furniture , $owner);
+}
+
 
 
 
