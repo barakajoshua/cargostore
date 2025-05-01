@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config/connect.php';
+include 'connect.php';
 
 function registerUser($username , $password){
     $sql = "insert into manager(username , password) values('$username' , '$password')";
@@ -38,28 +38,34 @@ function addNewProduct($furniture , $owner){
     $registerProdut = mysqli_query($GLOBALS['connection'],$sql);
     if($registerProdut){
         echo'product registered successfully';
-            // header('location:/cargo/viewing/dash');
+            header('location:/cargo/viewing/dash.php');
     }else{
         echo'Erro while inserting ' . mysqli_connect_error();
     }
 }
 
+function stockin($product, $id){
+    $sql = "UPDATE import SET quantity = quantity+$product  WHERE furnitureId=$id ";
+    $update = mysqli_query($GLOBALS['connection'],$sql);
+    if($update){
+        header('location:/cargo/viewing/dash.php');
+    }else{
+        echo"Error while perfoming this request" . mysqli_connect_error();
+    }
+}
 
 
-// function  getAlldata(){
-//     $getUser = "SELECT * FROM manager";
-//     $result = mysqli_query($GLOBALS['connection'],$getUser);
-//     return $result;
-// }
 
+function stockOut($product, $id){
+    $sql = "UPDATE import SET quantity = quantity-$product  WHERE furnitureId=$id ";
+    $update = mysqli_query($GLOBALS['connection'],$sql);
+    if($update){
+        header('location:/cargo/viewing/dash.php');
+    }else{
+        echo"Error while perfoming this request" . mysqli_connect_error();
+    }
+}
 
-// function stockOut(){
-
-// }
-
-// function stockIn(){
-    
-// }
 
 
 

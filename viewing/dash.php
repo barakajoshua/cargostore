@@ -24,7 +24,6 @@ if(empty($_SESSION['username'])){
     }
     a{
         text-decoration: none;
-        color: white;
     }
     a:hover{
         color: chocolate;
@@ -52,10 +51,7 @@ if(empty($_SESSION['username'])){
         background: none;
         border: none;
         color: white;
-
-
     }
-
     .leftBack li button:hover {
         color: chocolate;
         cursor: pointer;
@@ -82,7 +78,36 @@ if(empty($_SESSION['username'])){
     }
     .furniture table{
         width: 100%;
+        font-size: 20px;
+        text-align: center;
         border: none;
+        font-family: 'Gill Sans', 'Trebuchet MS';
+    }
+    .furniture table button{
+        width: 100%;
+        padding: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+    }
+    .furniture table button:hover{
+        color: orange;
+    }
+    .furniture th{
+        background: #111827;
+        padding: 10px;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS';
+    }
+    .furniture tr{
+        padding-top: 1rem;
+    }
+    .furniture td{
+        border: solid 1px #111827;
+    }
+    .furniture table tr:nth-last-of-type(even){
+      background: gray;
     }
     .furniture table td{
         border-bottom: 2px 2px yellowgreen;
@@ -135,20 +160,28 @@ if(empty($_SESSION['username'])){
                     <th>No</th>
                     <th>furniture name</th>
                     <th>furniture owner</th>
+                    <th>Quantity</th>
+                    <th>Stock</th>
                     <th>actions</th>
                 </tr>
         
             <?php
             $sql = 'SELECT * FROM furniture';
             $selection = mysqli_query($connection , $sql);
+            $count =0;
             while($row = mysqli_fetch_assoc($selection)){
-                $count = 1;
+                $count++;
             ?>
             <tr>
-            <td><?php echo $count++ ?></td>
+            <td><?php echo $count; ?></td>
             <td><?php echo $row['furnitureName'] ?></td>
             <td><?php echo $row['furnitureOwnerName'] ?></td>
-            <td><button>Delete</button> <button>Edit</button></td>
+            <td><?php echo $row[''] ?></td>
+            <td>345</td>
+            <td>
+                <button><a href="stock/stock.php?id=<?php echo $row['furnitureId']?>">stockin</a></button>
+                <button><a href="stock/stockout.php?id=<?php echo $row['furnitureId'] ?>">stockout</a></button></td>
+            <td><button>Delete</button><button>Edit</button></td>
             <?php
             }
             ?>

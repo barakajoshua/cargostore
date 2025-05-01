@@ -51,7 +51,7 @@ if(empty($_SESSION['username'])){
     </div>
     <div>
     <br><br>
-    <button name="register">Add Furniture</button>
+    <button name="registerProduct">Add Furniture</button>
     </form>
     </div>
     </center>

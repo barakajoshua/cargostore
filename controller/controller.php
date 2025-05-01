@@ -16,11 +16,14 @@ if(isset($_POST['login'])){
     singin($username , $password);
 }
 
-if(isset($_POST['register'])){
+//register New Furniture
+if(isset($_POST['registerProduct'])){
     $furniture = $_POST['product'];
     $owner = $_POST['owner'];
     addNewProduct($furniture , $owner);
 }
+
+
 
 
 
