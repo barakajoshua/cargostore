@@ -33,8 +33,8 @@ function UserLogOut(){
     header('location:../');
 }
 
-function addNewProduct($furniture , $owner){
-    $sql = "insert into furniture(furnitureName,furnitureOwnerName) values('$furniture','$owner')";
+function addNewProduct($furniture , $owner,$quantity){
+    $sql = "insert into furniture(furnitureName,furnitureOwnerName,quantity) values('$furniture','$owner','$quantity')";
     $registerProdut = mysqli_query($GLOBALS['connection'],$sql);
     if($registerProdut){
         echo'product registered successfully';
@@ -45,9 +45,11 @@ function addNewProduct($furniture , $owner){
 }
 
 function stockin($product, $id){
-    $sql = "UPDATE import SET quantity = quantity+$product  WHERE furnitureId=$id ";
+    $sql = "INSERT INTO import(furnitureId,quantity) VALUES($id,$product)";
+    $furnituresql = "UPDATE furniture SET quantity = quantity+$product  WHERE furnitureId=$id ";
     $update = mysqli_query($GLOBALS['connection'],$sql);
-    if($update){
+    $furnitureUp = mysqli_query($GLOBALS['connection'],$furnituresql);
+    if($update && $furnitureUp){
         header('location:/cargo/viewing/dash.php');
     }else{
         echo"Error while perfoming this request" . mysqli_connect_error();
@@ -57,9 +59,11 @@ function stockin($product, $id){
 
 
 function stockOut($product, $id){
-    $sql = "UPDATE import SET quantity = quantity-$product  WHERE furnitureId=$id ";
+    $sql = "INSERT INTO import(furnitureId,quantity) VALUES($id,$product)";
+    $furnituresql = "UPDATE furniture SET quantity = quantity-$product  WHERE furnitureId=$id ";
     $update = mysqli_query($GLOBALS['connection'],$sql);
-    if($update){
+    $furnitureUp = mysqli_query($GLOBALS['connection'],$furnituresql);
+    if($update && $furnitureUp){
         header('location:/cargo/viewing/dash.php');
     }else{
         echo"Error while perfoming this request" . mysqli_connect_error();

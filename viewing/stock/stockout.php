@@ -1,4 +1,5 @@
 <?php
+
 require(__DIR__ . '/../../config/logic.php');
 if(isset($_POST['stockOut']) && $_GET['id']){
     $id = $_GET['id'];

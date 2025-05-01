@@ -176,12 +176,13 @@ if(empty($_SESSION['username'])){
             <td><?php echo $count; ?></td>
             <td><?php echo $row['furnitureName'] ?></td>
             <td><?php echo $row['furnitureOwnerName'] ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td>345</td>
+            <td><?php echo $row['quantity'] ?></td>
             <td>
                 <button><a href="stock/stock.php?id=<?php echo $row['furnitureId']?>">stockin</a></button>
                 <button><a href="stock/stockout.php?id=<?php echo $row['furnitureId'] ?>">stockout</a></button></td>
-            <td><button>Delete</button><button>Edit</button></td>
+            <td>
+                <a href="dash.php?id=<?php echo $row['furnitureId'] ?>"><button>Delete</button></a>
+                <a href=""><button>Edit</button></a>
             <?php
             }
             ?>
@@ -190,6 +191,18 @@ if(empty($_SESSION['username'])){
         </div>
     </div>
 </section>
+<?php 
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $deleting = mysqli_query($GLOBALS['connection'],"DELETE FROM furniture WHERE furnitureId='$id'");
+    if($deleting){
+        echo"<script>confirm('are you sure you want to continue deleting') </script>";
+    }else{
+        echo"Error while deleting" . mysqli_connect_error();
+    }
+}
+
+?>
 
   
 </body>

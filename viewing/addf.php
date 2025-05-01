@@ -50,6 +50,10 @@ if(empty($_SESSION['username'])){
     <input type="text" name="product" id="username" placeholder="furniture name" required>
     </div>
     <div>
+    <br>
+    <input type="number" name="quantity" id="username" placeholder="starting quantity" required>
+    </div>
+    <div>
     <br><br>
     <button name="registerProduct">Add Furniture</button>
     </form>
